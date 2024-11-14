@@ -11,6 +11,7 @@ import { BsBell } from "react-icons/bs";
 
 import { Context } from '../context/ContextApi';
 import Loader from '../shared/Loader';
+import { CgClose } from 'react-icons/cg';
 
 
 
@@ -42,17 +43,17 @@ const Header = () => {
   
   return (
     <>
-      <div className="flex justify-between items-center bg-[#212121] opacity-95 h-14 px-14 sticky top-0 font-roboto  ">
+      <div className="flex justify-between items-center bg-[#212121] opacity-95 h-14 px-14 sticky z-40 top-0 font-roboto w-screen ">
       {loading && <Loader/>}
       <div className="flex items-center gap-8 text-2xl">
-        <div className='hover:cursor-pointer'>
-          <GiHamburgerMenu />
+        <div className='hover:cursor-pointer' onClick={mobileMenuToggle}>
+          {mobileMenu ? <CgClose /> : <GiHamburgerMenu />}
         </div>
         <Link to="/">
         <div className="flex items-center gap-2 justify-center">
           <FaYoutube className="text-2xl text-red-500" />
-          <span className="text-2xl ">MontyPlay</span>
-          <span className="text-sm font-light relative bottom-3 right-2">
+          <span className="text-2xl max-md:hidden ">MontyPlay</span>
+          <span className="text-sm font-light relative bottom-3 right-2 max-md:hidden">
             IN
           </span>
         </div>
@@ -65,23 +66,23 @@ const Header = () => {
               <input
                 type="text"
                 placeholder="Search"
-                className="w-96 h-8 bg-zinc-900 border-none border-gray-600 focus:outline-none "
+                className="w-96 max-md:w-40 h-8 bg-zinc-900 border-none border-gray-600 focus:outline-none "
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyUp={searchQueryHandler}
                 value={searchQuery}
               />
             </div>
-            <button className="relative   bg-white/[0.1] w-[50px] h-10 rounded-r-3xl left-2" >
+            <button className="relative   bg-white/[0.1] w-[50px] max-md:w-[30px] h-10 rounded-r-3xl left-2" >
               <FaSearch className=" relative text-xl rounded-r-3xl left-3 " />
             </button>
           </div>
         </form>
-        <div className="p-3 rounded-full bg-zinc-800 hover:cursor-pointer">
+        <div className="p-3 rounded-full bg-zinc-800 hover:cursor-pointer max-md:hidden">
           <FaMicrophone className="text-2xl " />
         </div>
       </div>
       <div className="flex gap-8 items-center text-xl hover:cursor-pointer">
-        <BiVideoPlus className="text-3xl" />
+        <BiVideoPlus className="text-3xl max-md:hidden" />
         <div className="relative hover:cursor-pointer">
           <BsBell />
           <span className="absolute bottom-2 left-3 text-xs bg-red-500 rounded-full z-1">
