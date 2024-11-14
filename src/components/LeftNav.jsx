@@ -5,7 +5,7 @@ import LeftNavMenuItem from './LeftNavMenuItem';
 import { categories } from '../utils/Constants';
 
 const LeftNav = () => {
-  const { selectCategories, setSelectCategories } = useContext(Context);
+  const { selectCategories, setSelectCategories, mobileMenu } = useContext(Context);
   const navigate = useNavigate();
 
   const clickHandler = (name, type) => {
@@ -22,7 +22,7 @@ const LeftNav = () => {
   }
 
   return (
-    <div className='w-2/12 bg-[#212121] pr-5 pb-8 h-screen p-2 overflow-hidden'> {/* updated className */}
+    <div className={`w-2/12 max-md:w-2/3 bg-[#212121] pr-5 pb-8 h-screen p-2 overflow-hidden max-md:absolute max-md:top-14 max-md:z-50 ${mobileMenu ? "left-0" : "-left-full"} transition-all duration-500 ease-in-out`}> {/* updated className */}
       <div className='flex px-5 flex-col'>
         {categories.map((item) => (
           <div key={item.name}>
